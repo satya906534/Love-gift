@@ -1,180 +1,99 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Happy New Year My Love ❤️</title>
-
-<style>
-body{
-    margin:0;
-    overflow:hidden;
-    height:100vh;
-    font-family:'Segoe UI',sans-serif;
-    background:linear-gradient(135deg,#ff5f9e,#ff8fb1);
-    color:white;
-    text-align:center;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Love ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      color: #fff;
+      overflow: hidden;
+    }.container {
+  padding: 20px;
 }
 
-.container{
-    position:relative;
-    top:50%;
-    transform:translateY(-50%);
-    z-index:2;
-    padding:20px;
+img {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 6px solid #fff;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  margin-bottom: 20px;
+  animation: float 3s ease-in-out infinite;
 }
 
-h1{
-    font-size:2.5rem;
-    animation:glow 2s infinite alternate;
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
-@keyframes glow{
-    from{ text-shadow:0 0 10px white; }
-    to{ text-shadow:0 0 25px yellow; }
+h1 {
+  font-size: 3.2rem;
+  margin: 10px 0;
+  animation: pulse 1.5s infinite;
 }
 
-p{
-    font-size:1.2rem;
-    line-height:1.6;
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
 }
 
-/* Photo */
-.photo{
-    width:180px;
-    height:180px;
-    border-radius:50%;
-    border:5px solid white;
-    margin:15px auto;
-    animation:pulse 2s infinite;
-    background-size:cover;
-    background-position:center;
+.love {
+  font-size: 4rem;
+  font-weight: bold;
+  margin: 20px 0;
+  color: #ff1744;
+  text-shadow: 0 0 15px rgba(255,0,0,0.6);
+  animation: loveBeat 1s infinite;
 }
 
-@keyframes pulse{
-    0%{transform:scale(1);}
-    50%{transform:scale(1.08);}
-    100%{transform:scale(1);}
+@keyframes loveBeat {
+  0% { transform: scale(1); }
+  25% { transform: scale(1.2); }
+  50% { transform: scale(1); }
+  75% { transform: scale(1.2); }
+  100% { transform: scale(1); }
 }
 
-/* Tap button */
-.play-btn{
-    margin:15px auto;
-    padding:12px 25px;
-    background:white;
-    color:#ff4f8b;
-    border:none;
-    border-radius:30px;
-    font-size:1rem;
-    cursor:pointer;
-    font-weight:bold;
+p {
+  font-size: 1.2rem;
+  max-width: 500px;
+  margin: 0 auto 20px;
+  line-height: 1.6;
 }
 
-/* Hearts */
-.heart{
-    position:absolute;
-    color:red;
-    font-size:20px;
-    animation:floatUp 6s linear infinite;
+.heart {
+  position: fixed;
+  bottom: -20px;
+  color: red;
+  font-size: 20px;
+  animation: rise 6s linear infinite;
 }
 
-@keyframes floatUp{
-    from{transform:translateY(100vh);opacity:1;}
-    to{transform:translateY(-10vh);opacity:0;}
+@keyframes rise {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
 }
 
-/* Fireworks */
-canvas{
-    position:fixed;
-    top:0;
-    left:0;
-    z-index:1;
-}
-</style>
+  </style>
 </head>
-
 <body>
-
-<!-- 🔐 OPTIONAL PASSWORD (remove if not needed) -->
-<script>
-  let pass = prompt("💖 Enter our secret code");
-  if(pass !== "babu123"){
-    document.body.innerHTML =
-    "<h2 style='margin-top:40vh'>Access Denied ❌</h2>";
-  }
-</script>
-
-<!-- 🎵 Music -->
-<audio id="bgMusic" loop>
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
-
-<canvas id="fireworks"></canvas>
-
-<div class="container">
-    <h1>🎉 Happy New Year My Love ❤️</h1>
-
-    <!-- 📸 PHOTO -->
-    <div class="photo" style="background-image:url('her.jpg');"></div>
-
-    <!-- ▶️ TAP TO PLAY -->
-    <button class="play-btn" onclick="playMusic()">▶ Tap to Play Music</button>
-
+  <audio id="music" autoplay loop>
+    <source src="music.mp3" type="audio/mpeg" />
+  </audio>  <div class="container">
+    <img src="her.jpg" alt="My Love" />
+    <h1>My Babu ❤️</h1>
+    <div class="love">I LOVE YOU</div>
     <p>
-        Dear <b>❤️ [HER NAME] ❤️</b><br><br>
-        Tum meri duniya ho meri jaan 🥺❤️<br>
-        Main tumhe <b>Babu</b> aur <b>Beta</b><br>
-        isi liye bulata hoon kyunki tum sabse special ho 💞<br><br>
-        Distance kuch bhi ho, pyaar hamesha paas rahega 💖
-    </p>
-
-    <p><b>Forever Yours 💕</b></p>
-</div>
-
-<script>
-function playMusic(){
-  document.getElementById("bgMusic").play();
-}
-
-/* Hearts */
-function createHeart(){
-  const h=document.createElement("div");
-  h.className="heart";
-  h.innerHTML="❤️";
-  h.style.left=Math.random()*100+"vw";
-  h.style.fontSize=(Math.random()*20+10)+"px";
-  document.body.appendChild(h);
-  setTimeout(()=>h.remove(),6000);
-}
-setInterval(createHeart,300);
-
-/* Fireworks */
-const canvas=document.getElementById("fireworks");
-const ctx=canvas.getContext("2d");
-canvas.width=innerWidth;
-canvas.height=innerHeight;
-let p=[];
-function fw(){
-  let x=Math.random()*canvas.width;
-  let y=Math.random()*canvas.height/2;
-  for(let i=0;i<40;i++){
-    p.push({x,y,a:Math.random()*6.28,s:Math.random()*5+2,l:80});
-  }
-}
-function anim(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  p.forEach((o,i)=>{
-    o.x+=Math.cos(o.a)*o.s;
-    o.y+=Math.sin(o.a)*o.s;
-    o.l--;
-    ctx.fillStyle="white";
-    ctx.fillRect(o.x,o.y,2,2);
-    if(o.l<=0)p.splice(i,1);
-  });
-  requestAnimationFrame(anim);
-}
-setInterval(fw,1200);
-anim();
-</script>
-
-</body>
-</html>
+      Tum meri zindagi ka sabse khoobsurat hissa ho 💖<br />
+      Chahe distance ho, par dil hamesha paas hai 🫶<br />
