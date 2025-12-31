@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy New Year My Love ❤️</title>
+
+<style>
+body{
+    margin:0;
+    overflow:hidden;
+    height:100vh;
+    font-family:'Segoe UI',sans-serif;
+    background:linear-gradient(135deg,#ff5f9e,#ff8fb1);
+    color:white;
+    text-align:center;
+}
+
+.container{
+    position:relative;
+    top:50%;
+    transform:translateY(-50%);
+    z-index:2;
+    padding:20px;
+}
+
+h1{
+    font-size:2.5rem;
+    animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+    from{ text-shadow:0 0 10px white; }
+    to{ text-shadow:0 0 25px yellow; }
+}
+
+p{
+    font-size:1.2rem;
+    line-height:1.6;
+}
+
+/* Photo */
+.photo{
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    border:5px solid white;
+    margin:15px auto;
+    animation:pulse 2s infinite;
+    background-size:cover;
+    background-position:center;
+}
+
+@keyframes pulse{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.08);}
+    100%{transform:scale(1);}
+}
+
+/* Tap button */
+.play-btn{
+    margin:15px auto;
+    padding:12px 25px;
+    background:white;
+    color:#ff4f8b;
+    border:none;
+    border-radius:30px;
+    font-size:1rem;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+/* Hearts */
+.heart{
+    position:absolute;
+    color:red;
+    font-size:20px;
+    animation:floatUp 6s linear infinite;
+}
+
+@keyframes floatUp{
+    from{transform:translateY(100vh);opacity:1;}
+    to{transform:translateY(-10vh);opacity:0;}
+}
+
+/* Fireworks */
+canvas{
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:1;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🔐 OPTIONAL PASSWORD (remove if not needed) -->
+<script>
+  let pass = prompt("💖 Enter our secret code");
+  if(pass !== "babu123"){
+    document.body.innerHTML =
+    "<h2 style='margin-top:40vh'>Access Denied ❌</h2>";
+  }
+</script>
+
+<!-- 🎵 Music -->
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<canvas id="fireworks"></canvas>
+
+<div class="container">
+    <h1>🎉 Happy New Year My Love ❤️</h1>
+
+    <!-- 📸 PHOTO -->
+    <div class="photo" style="background-image:url('her.jpg');"></div>
+
+    <!-- ▶️ TAP TO PLAY -->
+    <button class="play-btn" onclick="playMusic()">▶ Tap to Play Music</button>
+
+    <p>
+        Dear <b>❤️ [HER NAME] ❤️</b><br><br>
+        Tum meri duniya ho meri jaan 🥺❤️<br>
+        Main tumhe <b>Babu</b> aur <b>Beta</b><br>
+        isi liye bulata hoon kyunki tum sabse special ho 💞<br><br>
+        Distance kuch bhi ho, pyaar hamesha paas rahega 💖
+    </p>
+
+    <p><b>Forever Yours 💕</b></p>
+</div>
+
+<script>
+function playMusic(){
+  document.getElementById("bgMusic").play();
+}
+
+/* Hearts */
+function createHeart(){
+  const h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="❤️";
+  h.style.left=Math.random()*100+"vw";
+  h.style.fontSize=(Math.random()*20+10)+"px";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),6000);
+}
+setInterval(createHeart,300);
+
+/* Fireworks */
+const canvas=document.getElementById("fireworks");
+const ctx=canvas.getContext("2d");
+canvas.width=innerWidth;
+canvas.height=innerHeight;
+let p=[];
+function fw(){
+  let x=Math.random()*canvas.width;
+  let y=Math.random()*canvas.height/2;
+  for(let i=0;i<40;i++){
+    p.push({x,y,a:Math.random()*6.28,s:Math.random()*5+2,l:80});
+  }
+}
+function anim(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  p.forEach((o,i)=>{
+    o.x+=Math.cos(o.a)*o.s;
+    o.y+=Math.sin(o.a)*o.s;
+    o.l--;
+    ctx.fillStyle="white";
+    ctx.fillRect(o.x,o.y,2,2);
+    if(o.l<=0)p.splice(i,1);
+  });
+  requestAnimationFrame(anim);
+}
+setInterval(fw,1200);
+anim();
+</script>
+
+</body>
+</html>
